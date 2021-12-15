@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- 第4步，在struts.xml里面配置action -->
+	<package name="default" extends="struts-default">
+		<global-results>
+			<result name="input">/manage/error.jsp</result>
+		</global-results>
+		<!-- class属性要等于Spring容器里面的action的id -->
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="success">/manage/user_list.jsp</result>
+			<result name="updatepwd">/manage/updatepwd.jsp</result>
+			<result name="updateuser">/manage/updateuser.jsp</result>
+			<result name="list" type="redirect">/user_list.action</result>
+			<result name="index">/manage/index.jsp</result>
+			<result name="login">/manage/login.jsp</result>
+		</action>
+		<action name="gaojian_*" class="gaojianAction" method="{1}">
+			<result name="success">/manage/gaojian_list.jsp</result>
+			<result name="success2">/manage/gaojian_list2.jsp</result>
+			<result name="success3">/manage/gaojian_list3.jsp</result>
+			<result name="view">/manage/gaojian_view.jsp</result>
+			<result name="detail">/manage/gaojian_detail.jsp</result>
+			<result name="list" type="redirect">/gaojian_list.action</result>
+			<result name="list2" type="redirect">/gaojian_list2.action</result>
+			<result name="list3" type="redirect">/gaojian_list3.action</result>
+		</action>
+		
+		<action name="gonggao_*" class="gonggaoAction" method="{1}">
+			<result name="success">/manage/gonggao_list.jsp</result>
+			<result name="list" type="redirect">/gonggao_list.action</result>
+		</action>
+		<action name="news_*" class="newsAction" method="{1}">
+			<result name="success">/manage/news_list.jsp</result>
+			<result name="list" type="redirect">/news_list.action</result>
+		</action>
+		
+		<action name="message_*" class="messageAction" method="{1}">
+			<result name="success">/manage/message_list.jsp</result>
+			<result name="list" type="redirect">/message_list.action</result>
+		</action>
+		<action name="upload" class="uploadAction">
+			<result name="success">/upload/upload_re.jsp</result>
+		</action>
+		<action name="download" class="downloadAction">
+			<result type="stream">
+				<param name="contentType">application/octet-stream</param>
+				<param name="inputName">downloadFile</param>
+				<!--下载时，客户端显示的下载的文件名 -->
+				<param name="contentDisposition"> attachment;filename=${fileName}</param>
+				<!-- 数据的缓冲大小 -->
+				<param name="bufferSize">1024</param>
+			</result>
+		</action>
+
+	</package>
+</struts>
