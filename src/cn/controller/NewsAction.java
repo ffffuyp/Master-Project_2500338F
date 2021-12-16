@@ -37,13 +37,13 @@ public class NewsAction extends BaseAction {
 	private NewsDao newsDao;
 
 	
-	// 详情
+	// 
 	public String detail() {
 		news = newsDao.get(TNews.class, id);
 		return "detail";
 	}
 
-	// 列表
+	// 
 	public String list() {
 		String hqlCount = "select count(*) from TNews u where 1=1";
 		String hql = "from TNews u where 1=1";		

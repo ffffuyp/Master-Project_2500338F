@@ -48,15 +48,15 @@ public class UserAction extends BaseAction {
 	@Qualifier("gonggaoDao")
 	private GonggaoDao gonggaoDao;
 
-	// 后台登录
+	// 
 	public String login() throws Exception {
-		session.setAttribute("role", role);// 保存角色
+		session.setAttribute("role", role);// 
 		String hql = "from TUser u where username=? and password=? and role=? and isdel=0";
 		List<TUser> list = userDao.getByHql(hql, username, password,role);
 		if (list != null && list.size() > 0) {
 			TUser user = list.get(0);
 			session.setAttribute("currentUser", user);
-			//查询征稿信息
+			//
 			List<TNews> newsList=newsDao.getByHql("from TNews order by id desc");
 			if(newsList.size()>8){
 				newsList=newsList.subList(0, 8);
@@ -69,7 +69,7 @@ public class UserAction extends BaseAction {
 			session.setAttribute("gonggaoList", gonggaoList);
 			return "index";
 		} else {
-			request.setAttribute("msg", "用户名密码错误!");
+			request.setAttribute("msg", "Error in password");
 			return "login";
 		}
 	}
@@ -84,13 +84,13 @@ public class UserAction extends BaseAction {
 		return "login";
 	}
 
-	// 详情
+	// 
 	public String detail() {
 		user = userDao.get(TUser.class, id);
 		return "detail";
 	}
 
-	// 列表
+	// 
 	public String list() {
 		String hqlCount = "select count(*) from TUser u where role!=0 and isdel=0";
 		String hql = "from TUser u where role!=0 and isdel=0";
@@ -105,7 +105,7 @@ public class UserAction extends BaseAction {
 				.getPageSize());
 		return SUCCESS;
 	}
-	//审稿人
+	//
 	public String jsontlist() throws IOException {
 		String hql = "from TUser u where isdel=0 and role=2";
 		list = userDao.getByHql(hql);

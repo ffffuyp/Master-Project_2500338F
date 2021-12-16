@@ -41,17 +41,17 @@ public class GaojianAction extends BaseAction {
 	@Qualifier("userDao")
 	private UserDao userDao;
 
-	// 详情
+	// 
 	public String view() {
 		gaojian = gaojianDao.get(TGaojian.class, id);
 		return "view";
 	}
-	// 详情
+	// 
 	public String detail() {
 		gaojian = gaojianDao.get(TGaojian.class, id);
 		return "detail";
 	}
-	// 列表
+	// 
 	public String list() {
 		Integer role=(Integer)session.getAttribute("role");
 		TUser user=(TUser)session.getAttribute("currentUser");
@@ -61,7 +61,7 @@ public class GaojianAction extends BaseAction {
 			hqlCount += " and u.name like '%" + name + "%'";
 			hql += " and u.name like '%" + name + "%'";
 		}
-		//查自己
+		//
 		if(role==1){
 			hqlCount += " and u.tuser.id="+user.getId();
 			hql += " and u.tuser.id="+user.getId();
@@ -96,7 +96,7 @@ public class GaojianAction extends BaseAction {
 		return "success2";
 	}
 	
-	// 列表
+	// 
 	public String list3() {
 		Integer role=(Integer)session.getAttribute("role");
 		TUser user=(TUser)session.getAttribute("currentUser");

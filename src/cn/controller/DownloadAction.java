@@ -6,20 +6,24 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-
-import org.apache.struts2.ServletActionContext;
+import java.net.URLEncoder;
 import org.springframework.stereotype.Controller;
 
 @Controller("downloadAction")
 public class DownloadAction extends BaseAction{
 	private String fileName;
 	private String tempname;
+	
+	protected String filePath;
+	
 	public String execute() {
 		try {
-			tempname=fileName;
-			//在弹出下载框里面的中文文件名
-			fileName = java.net.URLEncoder.encode(fileName, "UTF-8");
-			String filePath = session.getServletContext().getRealPath("/upload/"+tempname);
+			// for Unit test
+			if(null == filePath){
+				tempname=fileName;
+				fileName = URLEncoder.encode(fileName, "UTF-8");
+				filePath = session.getServletContext().getRealPath("/upload/"+tempname);
+			}
 			File file=new File(filePath);
 			if(!file.exists()){
 				response.setContentType("text/html;charset=UTF-8");

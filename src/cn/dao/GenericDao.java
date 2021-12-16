@@ -13,55 +13,55 @@ import org.springframework.orm.hibernate4.HibernateCallback;
 //泛型Dao
 public interface GenericDao<T> {
 	/**
-	 * 增加
+	 * 
 	 */
 	public Serializable add(T t);
 	/**
-	 * 删除
+	 * delete
 	 */
 	public void delete(T t);
 	/**
-	 * 修改
+	 * edit
 	 */
 	public void update(T t);
 	/**
-	 * 根据主键查找
+	 * search by pk
 	 */
 	public T get(Class entityClass, Serializable pk);
 	/**
-	 * 根据Class对象查找
+	 * search by class
 	 */
 	public List<T> getAll(Class entityClass);
 	/**
-	 * 根据sql语句查找
+	 * search by sql
 	 */
 	public List<T> getByHql(String hql);
 	/**
-	 * 带参数的sql语句
+	 * sql
 	 */
 	public List<T> getByHql(String hql, Object... args);
 	/**
-	 * 分页查找
+	 * page
 	 */
 	public List<T> getByPage(String hql, int page,int pageSize);
 	/**
-	 * 查找记录数
+	 * record
 	 */
 	public Integer getCount(String hql);
 	/**
-	 * 查找记录数
+	 * record num
 	 */
 	public Integer getCount(String hql,Object... param);
 	/**
-	 * 查找最大编号
+	 * max record
 	 */
 	public Integer getMax(String hql);
 	/**
-	 * 分页查找
+	 * search by page
 	 */
 	public List<T> getByPage(DetachedCriteria dc,int page,int pageSize);
 	/**
-	 * 查找记录数
+	 * search record num
 	 */
 	public Integer getCount(DetachedCriteria dc);
 	

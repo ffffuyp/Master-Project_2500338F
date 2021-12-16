@@ -37,13 +37,13 @@ public class GonggaoAction extends BaseAction {
 	private GonggaoDao gonggaoDao;
 
 	
-	// 详情
+	// 
 	public String detail() {
 		gonggao = gonggaoDao.get(TGonggao.class, id);
 		return "detail";
 	}
 
-	// 列表
+	// 
 	public String list() {
 		TUser user=(TUser)session.getAttribute("currentUser");
 		Integer role=(Integer)session.getAttribute("role");
